@@ -1,48 +1,53 @@
 "use client";
 import { useContext } from "react";
-
 import { useTheme } from "@mui/material/styles";
-import { Box, IconButton } from "@mui/material";
+import { Box, Fab, IconButton } from "@mui/material";
 import { WbSunnyOutlined, NightlightOutlined } from "@mui/icons-material";
 import { ColorModeContext } from "@/context/themeContext";
 
-interface Props {
-  xs?: string;
-}
-
-const ThemeBtn = ({ xs }: Props) => {
+const ToggleColor = () => {
   const theme = useTheme();
   const { toggleColorMode } = useContext(ColorModeContext);
 
   return (
     <Box
       sx={{
-        display: {
-          xs: xs,
-        },
+        position: "absolute",
+        right: 10,
+        top:10
       }}
     >
-      <IconButton
-        aria-label="ThemeChanger"
+      <Fab
+        aria-label="toggle color"
+        variant="extended"
+        size="small"
+        color="secondary"
         sx={{
-          "&.MuiButtonBase-root:hover": {
-            backgroundColor: "transparent",
-          },
-          border: "2px solid",
-          borderRadius: 2,
-          padding: "5px",
-          color: "inherit",
+          backgroundColor:
+            theme.palette.mode === "dark"
+              ? "rgba(170, 71, 188, 0.7)"
+              : "rgba(206, 147, 216, 0.7)",
+          backdropFilter: "blur(1px)",
         }}
         onClick={toggleColorMode}
       >
+        {theme.palette.mode === "dark" ? "light" : "dark"}
         {theme.palette.mode === "dark" ? (
-          <WbSunnyOutlined />
+          <WbSunnyOutlined
+            sx={{
+              ml: 0.5,
+            }}
+          />
         ) : (
-          <NightlightOutlined />
+          <NightlightOutlined
+            sx={{
+              ml: 0.5,
+            }}
+          />
         )}
-      </IconButton>
+      </Fab>
     </Box>
   );
 };
 
-export default ThemeBtn;
+export default ToggleColor;

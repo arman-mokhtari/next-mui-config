@@ -1,9 +1,12 @@
-import React from 'react'
+import HomeContent from "@/components/home/HomeContent";
+import { Box } from "@mui/material";
 
 const page = () => {
   return (
-    <div>home page</div>
-  )
-}
+    <Box>
+      <HomeContent />
+    </Box>
+  );
+};
 
-export default page
+export default page;

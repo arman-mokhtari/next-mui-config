@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
 import { ColorModeContext } from "@/context/themeContext";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, useMediaQuery } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ReactNode, useEffect, useState } from "react";
-import ThemeBtn from "./ToggleColorMode";
 import { darkTheme, lightTheme } from "@/theme";
+import ToggleColor from "./ToggleColorMode";
+import Sidebar from "./sidebar/Sidebar";
 
 const LayoutMC = ({
   children,
@@ -34,8 +35,8 @@ const LayoutMC = ({
       >
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <ThemeBtn />
-          {children}
+          <ToggleColor />
+          <Sidebar>{children}</Sidebar>
         </ThemeProvider>
       </ColorModeContext.Provider>
     </AppRouterCacheProvider>
