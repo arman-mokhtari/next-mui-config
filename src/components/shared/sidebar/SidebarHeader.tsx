@@ -1,3 +1,5 @@
+"use client";
+
 import CustomAvatar from "@/components/common/CustomAvatar";
 import { Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -16,10 +18,14 @@ const SidebarHeader = () => {
       <CustomAvatar />
 
       <Typography
-      sx={{
-        fontWeight:"500",
-      }}
-      noWrap>Arman Mokhtari</Typography>
+        sx={{
+          fontWeight: "500",
+          mt: 0.5,
+        }}
+        noWrap
+      >
+        Arman Mokhtari
+      </Typography>
       <Typography
         noWrap
         sx={{

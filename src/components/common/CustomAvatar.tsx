@@ -13,7 +13,6 @@ const CustomAvatar = () => {
         width: 120,
         border: "7px solid",
         borderColor: theme.palette.mode === "dark" ? "#2e344e" : "#cbced8",
-        transition: "border-color 0.5s",
         "&:hover": {
           borderColor: "#037fff",
         },
