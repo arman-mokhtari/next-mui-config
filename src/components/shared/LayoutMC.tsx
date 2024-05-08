@@ -36,7 +36,9 @@ const LayoutMC = ({
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <ToggleColor />
-          <Sidebar>{children}</Sidebar>
+          <Sidebar>
+            {children}
+            </Sidebar>
         </ThemeProvider>
       </ColorModeContext.Provider>
     </AppRouterCacheProvider>

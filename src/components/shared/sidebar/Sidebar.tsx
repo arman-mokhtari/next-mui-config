@@ -8,6 +8,7 @@ import { useState } from "react";
 import SidebarHeader from "./SidebarHeader";
 import TabItems from "./TabItems";
 import SidebarSocial from "./SidebarSocial";
+import BackLines from "../BackLines";
 
 const drawerWidth = 300;
 
@@ -49,6 +50,9 @@ export default function Sidebar({
           theme.palette.mode === "dark"
             ? "rgba(25, 29, 43, 0.7)"
             : "rgba(228, 228, 228, 0.7)",
+        "& .MuiDivider-root": {
+          borderColor: theme.palette.mode === "dark" ? "#2e344e" : "#cbced8",
+        },
       }}
     >
       <Box>
@@ -90,9 +94,6 @@ export default function Sidebar({
         sx={{
           width: { md: drawerWidth },
           flexShrink: { md: 0 },
-          "& .MuiDivider-root": {
-            borderColor: theme.palette.mode === "dark" ? "#2e344e" : "#cbced8",
-          },
         }}
         aria-label="mailbox folders"
       >
@@ -134,10 +135,15 @@ export default function Sidebar({
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          minHeight: "100vh",
+
+          backgroundColor:
+            theme.palette.mode === "dark" ? "#10121B" : "#F1F1F1",
+          position: "relative",
         }}
       >
+        <BackLines />
         {children}
       </Box>
     </Box>
