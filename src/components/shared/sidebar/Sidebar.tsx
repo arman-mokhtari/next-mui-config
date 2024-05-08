@@ -1,22 +1,15 @@
 "use client";
 
 import { ReactNode } from "react";
-import { Inbox, Mail, MenuRounded } from "@mui/icons-material";
-import {
-  Box,
-  Divider,
-  Drawer,
-  Fab,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import { MenuRounded } from "@mui/icons-material";
+import { Box, Divider, Drawer, Fab } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import SidebarHeader from "./SidebarHeader";
+import TabItems from "./TabItems";
+import SidebarSocial from "./SidebarSocial";
 
-const drawerWidth = 260;
+const drawerWidth = 300;
 
 export default function Sidebar({
   children,
@@ -41,40 +34,41 @@ export default function Sidebar({
     }
   };
 
+  const theme = useTheme();
+
   const drawer = (
-    <div>
-      <SidebarHeader />
-      <Divider />
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <Inbox /> : <Mail />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <Inbox /> : <Mail />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        minHeight: "100vh",
+        borderRight: "2px solid",
+        borderColor: theme.palette.mode === "dark" ? "#2e344e" : "#cbced8",
+        backgroundColor:
+          theme.palette.mode === "dark"
+            ? "rgba(25, 29, 43, 0.7)"
+            : "rgba(228, 228, 228, 0.7)",
+      }}
+    >
+      <Box>
+        <SidebarHeader />
+        <Divider />
+        <TabItems />
+      </Box>
+      <Box>
+        <Divider />
+        <SidebarSocial />
+      </Box>
+    </Box>
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box
+      sx={{
+        display: "flex",
+      }}
+    >
       <Fab
         aria-label="open drawer"
         size="small"
@@ -84,7 +78,7 @@ export default function Sidebar({
           position: "absolute",
           left: 10,
           top: 10,
-          display: { sm: "none" },
+          display: { md: "none" },
         }}
         onClick={handleDrawerToggle}
       >
@@ -93,7 +87,13 @@ export default function Sidebar({
 
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        sx={{
+          width: { md: drawerWidth },
+          flexShrink: { md: 0 },
+          "& .MuiDivider-root": {
+            borderColor: theme.palette.mode === "dark" ? "#2e344e" : "#cbced8",
+          },
+        }}
         aria-label="mailbox folders"
       >
         <Drawer
@@ -105,10 +105,11 @@ export default function Sidebar({
             keepMounted: true,
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", md: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              border: "none",
             },
           }}
         >
@@ -117,10 +118,11 @@ export default function Sidebar({
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: "none", sm: "block" },
+            display: { xs: "none", md: "block" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              border: "none",
             },
           }}
           open
