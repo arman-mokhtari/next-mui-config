@@ -3,7 +3,7 @@
 import { ColorModeContext } from "@/context/themeContext";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, useMediaQuery } from "@mui/material";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { ReactNode, useEffect, useState } from "react";
 import { darkTheme, lightTheme } from "@/theme";
 import ToggleColor from "./ToggleColorMode";
